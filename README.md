@@ -17,4 +17,4 @@
 
 ## 다운로드
 
-[맥용다운로드](https://drive.google.com/drive/folders/17zka1emFHcfm_Y7IOJ8wLicwIocGryKC?usp=sharing)
+[맥용다운로드](https://drive.google.com/drive/folders/1oeuq-SnYFnsZ2XJI7oiXui7gQG8Xg_PS?usp=sharing)
