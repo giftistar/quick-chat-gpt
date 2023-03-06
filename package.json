@@ -1,7 +1,7 @@
 {
   "name": "ChatGifti",
   "productName": "ChatGifti",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "multiple chat gpt window service",
   "main": ".webpack/main",
   "scripts": {
