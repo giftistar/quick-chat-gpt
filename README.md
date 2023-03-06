@@ -1,5 +1,7 @@
 # 쳇기프티(ChatGPT) 앱
 
+![멀티창]([이미지 URL](https://github.com/giftistar/quick-chat-gpt/blob/main/preview.png?raw=true))
+
 쳇기프티는 맥(Mac) 운영체제에서 챗 GPT 화면을 빠르게 실행할 수 있도록 도와주는 트레이 어플리케이션입니다. 이 앱은 단순히 챗 GPT URL을 여러 창으로 사용할 수 있게 래핑해주는 기능만 있습니다.
 
 ## 사용 방법
