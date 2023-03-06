@@ -1,8 +1,8 @@
 {
-  "name": "quick-chat-gpt",
-  "productName": "quick-chat-gpt",
+  "name": "ChatGifti",
+  "productName": "ChatGifti",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "multiple chat gpt window service",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -13,8 +13,8 @@
   },
   "keywords": [],
   "author": {
-    "name": "동환",
-    "email": "bdhwan@gmail.com"
+    "name": "bdhwan",
+    "email": "cto@giftistar.com"
   },
   "license": "MIT",
   "devDependencies": {

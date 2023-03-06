@@ -1,0 +1,55 @@
+on:
+  push:
+    branches:
+      - main
+name: main
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [16.16.0]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            ~/.npm
+            ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/npm-shrinkwrap.json') }}
+
+      - name: Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build app
+        run: npx electron-forge make
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: v1.0.0
+          release_name: Release 1.0.0
+          body: |
+            Changes in this release:
+            - Added feature A
+            - Fixed bug B
+          draft: false
+          prerelease: false
+
+      - name: Upload asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "./out/make/my-app-1.0.0-linux-x64.deb"
+          asset_name: my-app-1.0.0-linux-x64.deb
+          asset_content_type: application/x-deb

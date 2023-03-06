@@ -13,14 +13,13 @@ if (require("electron-squirrel-startup")) {
 }
 
 let mainWindowList;
-let tray = null;
+
 const ASSETS_DIR = path.join(__dirname, "assets");
 
 function createTray() {
   mainWindowList = [];
   const icon_location = `${ASSETS_DIR}/image/tray_icon.png`;
-  console.log("icon_location", icon_location);
-  tray = new Tray(icon_location);
+  const tray = new Tray(icon_location);
   tray.on("click", () => {
     createWindow();
   });
@@ -59,7 +58,7 @@ app.on("ready", createTray);
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
-    app.quit();
+    // app.quit();
   }
 });
 
