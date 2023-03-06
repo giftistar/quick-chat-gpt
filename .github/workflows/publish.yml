@@ -4,15 +4,14 @@ on:
       - main
 name: main
 jobs:
-  build:
-    runs-on: macos-latest
+  build-ubuntu:
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         node-version: [16.16.0]
 
     steps:
       - uses: actions/checkout@v2
-
       - name: Cache node modules
         uses: actions/cache@v2
         id: cache
@@ -38,7 +37,6 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
         with:
           tag_name: v1.0.0
           release_name: Release 1.0.0
@@ -53,6 +51,6 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "./out/make/my-app-1.0.0-linux-x64.deb"
-          asset_name: my-app-1.0.0-linux-x64.deb
+          asset_path: "./out/make/ChatGifti-1.0.0-linux-x64.deb"
+          asset_name: ChatGifti-1.0.0-linux-x64.deb
           asset_content_type: application/x-deb
