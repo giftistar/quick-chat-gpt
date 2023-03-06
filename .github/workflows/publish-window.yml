@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - main_
 name: main
 jobs:
   build-ubuntu:
@@ -28,6 +28,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Increment version
+        run: npm version patch --no-git-tag-version
+      - name: Increment version
+        run: npm version patch --no-git-tag-version
 
       - name: Build app
         run: npx electron-forge make
