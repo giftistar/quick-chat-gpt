@@ -30,6 +30,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
     "electron": "23.1.2",
+    "electron-installer-dmg": "^4.0.0",
     "eslint": "^8.35.0",
     "eslint-plugin-import": "^2.27.5",
     "file-loader": "^6.2.0",

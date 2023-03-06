@@ -1,0 +1,64 @@
+on:
+  push:
+    branches:
+      - main
+name: main
+jobs:
+  build-ubuntu:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [16.16.0]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            ~/.npm
+            ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/npm-shrinkwrap.json') }}
+
+      - name: Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Increment version
+        run: npm version patch --no-git-tag-version
+
+      - name: Build app
+        run: npx electron-forge make
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.npm_package_version }}
+          release_name: Release ${{ env.npm_package_version }}
+          body: |
+            Changes in this release:
+            - Added feature A
+            - Fixed bug B
+          draft: false
+          prerelease: false
+
+      - name: Push Git tags
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "./out/ChatGifti-darwin-x64/ChatGifti.app"
+          asset_name: ChatGifti.app
+          asset_content_type: application/x-app
