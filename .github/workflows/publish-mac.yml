@@ -41,8 +41,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ npm_package_version }}
-          release_name: Release ${{ npm_package_version }}
+          tag_name: v1.1.0
+          release_name: Release 1.1.0
           body: |
             Changes in this release:
             - Added feature A
