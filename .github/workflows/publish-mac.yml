@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Increment version
+        run: npm version patch --no-git-tag-version
+
       - name: Build app
         run: npx electron-forge make
 
